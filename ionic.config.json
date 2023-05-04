@@ -1,0 +1,7 @@
+{
+  "name": "HelpingHands",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
