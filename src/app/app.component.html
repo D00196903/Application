@@ -1,3 +1,30 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet>
+
+    <footer>
+      <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button [routerLink]="['/forms']" tab="speakers">
+            <ion-icon name="person-circle"></ion-icon>
+            <ion-label>Users menu</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button [routerLink]="['/office']"tab="map">
+            <ion-icon name="map"></ion-icon>
+            <ion-label>Office</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button [routerLink]="['/show']" tab="events">
+            <ion-icon name="calendar"></ion-icon>
+            <ion-label>Events</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button [routerLink]="['/home']" tab="home">
+            <ion-icon name="home"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </footer>
+  </ion-router-outlet>
 </ion-app>

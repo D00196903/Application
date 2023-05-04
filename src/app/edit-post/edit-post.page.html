@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update Event </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-img src="assets/images/sosad.png"></ion-img>
+
+
+<ion-card color="light">
+  <ion-card-header>
+    <ion-label position="floating">EventTitle</ion-label>
+    <ion-input type="text" [(ngModel)]="event.title" required></ion-input>
+  </ion-card-header>
+
+
+  <ion-card-header>
+    <ion-label position="floating">Event Location</ion-label>
+    <ion-input type="text" [(ngModel)]="event.location" required></ion-input>
+  </ion-card-header>
+
+  <ion-card-header>
+    <ion-label position="floating">Event Details</ion-label>
+    <ion-input type="text" [(ngModel)]="event.details" required></ion-input>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-button class="ion-padding" color="success" expand="full" (click)="updateEvent(event)">Update</ion-button>
+  </ion-card-content>
+</ion-card>
+</ion-content>

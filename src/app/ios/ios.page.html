@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Availability
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-datetime presentation="date" displayFormat="MM/DD/YYYY" [(ngModel)]="selectedDate"></ion-datetime>
+  <ion-button color="success"  expand="block" (click)="loadData()">Load Data</ion-button>
+  <ion-list lines="none">
+
+    <ion-item-sliding *ngFor="let item of chosendate">
+      <ion-card color="light">
+        <ion-card-header>
+          <b>Fullname:</b>
+          <ion-card-title>{{ item.fullname }}</ion-card-title>
+          <b>Office:</b>
+          <ion-card-subtitle>{{ item.office }}</ion-card-subtitle>
+          <b>Time:</b>
+          <ion-card-subtitle>{{ item.time }}</ion-card-subtitle>
+          <b>Position:</b>
+          <ion-card-subtitle>{{ item.position }}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-item-sliding>
+
+  </ion-list>
+  <ion-button [routerLink]="['/add-roster']" color="success" expand="block">enter what days your free</ion-button>
+  <ion-button [routerLink]="['/buttons']" color="success" expand="block">Main menu</ion-button>
+</ion-content>

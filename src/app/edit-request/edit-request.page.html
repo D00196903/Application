@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Request a call</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="floating">Fullname</ion-label>
+    <ion-input type="text" [(ngModel)]="request.fullname" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Office</ion-label>
+    <ion-input type="text" [(ngModel)]="request.office" required></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="floating">Contact number</ion-label>
+    <ion-input type="text" [(ngModel)]="request.mobile" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Message</ion-label>
+    <ion-input type="text" [(ngModel)]="request.message" required></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="floating">Outcome</ion-label>
+    <ion-input type="text" [(ngModel)]="request.outcome" required></ion-input>
+  </ion-item>
+
+  <ion-button class="ion-padding" color="danger" expand="full" (click)="updateRequest(request)">Update</ion-button>
+  <ion-button [routerLink]="['/buttons']" color="success" expand="block">home</ion-button>
+
+</ion-content>
+

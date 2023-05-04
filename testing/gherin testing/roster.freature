@@ -1,0 +1,119 @@
+Feature: Create and Manage Roster
+
+  As a user
+  I want to create and manage a roster with the necessary information
+  So that I can efficiently schedule and organize work
+
+  Background:
+    Given I am logged in as a user
+    And I am on the add roster page
+
+  Scenario: Create a new roster with valid inputs
+    When I enter a valid fullname
+    And I enter a valid office
+    And I enter a valid position
+    And I enter a valid time
+    And I enter a valid date
+    And I click the "Submit" button
+    Then a loading indicator should be displayed with the message "Please Wait..."
+    And the new roster should be added to the Firestore "roster" collection
+    And the loading indicator should be dismissed
+    And I should be redirected to the "buttons" page
+
+  Scenario: Attempt to create a roster with a missing fullname
+    Given I am on the add roster page
+    When I leave the fullname field blank
+    And I enter a valid office
+    And I enter a valid position
+    And I enter a valid time
+    And I enter a valid date
+    And I click the "Submit" button
+    Then I should see a toast with the message "Enter fullname"
+    And the roster should not be created
+
+  Scenario: Attempt to create a roster with a missing office
+    Given I am on the add roster page
+    When I enter a valid fullname
+    And I leave the office field blank
+    And I enter a valid position
+    And I enter a valid time
+    And I enter a valid date
+    And I click the "Submit" button
+    Then I should see a toast with the message "Enter office"
+    And the roster should not be created
+
+  Scenario: Attempt to create a roster with a missing position
+    Given I am on the add roster page
+    When I enter a valid fullname
+    And I enter a valid office
+    And I leave the position field blank
+    And I enter a valid time
+    And I enter a valid date
+    And I click the "Submit" button
+    Then I should see a toast with the message "Enter position"
+    And the roster should not be created
+
+  Scenario: Attempt to create a roster with a missing time
+    Given I am on the add roster page
+    When I enter a valid fullname
+    And I enter a valid office
+    And I enter a valid position
+    And I leave the time field blank
+    And I enter a valid date
+    And I click the "Submit" button
+    Then I should see a toast with the message "Enter time"
+    And the roster should not be created
+
+  Scenario: Attempt to create a roster with a missing date
+    Given I am on the add roster page
+    When I enter a valid fullname
+    And I enter a valid office
+    And I enter a valid position
+    And I enter a valid time
+    And I leave the date field blank
+    And I click the "Submit" button
+    Then I should see a toast with the message "Enter date"
+    And the roster should not be created
+
+  Scenario: View the list of rosters
+    Given I am on the add roster page
+    When I view the roster list
+    Then I should see a list of rosters with fullname, date, office, position, and time information
+
+	Scenario: Delete a roster
+	Given I am on the add roster page
+	And I have a roster list with at least one roster entry
+	When I choose to delete a roster entry
+	Then a loading indicator should be displayed with the message "Please Wait..."
+	And the selected roster entry should be removed from the Firestore "roster" collection
+	And the loading indicator should be dismissed
+	And the roster list should no longer show the deleted roster entry
+	
+	
+	Feature: Roster 
+	As a user
+	I want to view and filter rosters by date
+	So that I can manage and organize rosters easily
+
+	Background:
+	Given I am logged in as a user
+	And I am on the ios page
+
+	Scenario: View all rosters
+	When I navigate to the ios page
+	Then a loading indicator should be displayed with the message "Please Wait..."
+	And I should see a list of all rosters
+	And the loading indicator should be dismissed
+
+	Scenario: Filter rosters by a specific date
+	Given I have selected a date from the date picker
+	When I click the "Load Data" button
+	Then a formatted date should be generated based on the selected date
+	And the rosters for the selected date should be fetched from the Firestore "roster" collection
+	And I should see a list of rosters filtered by the selected date
+
+	Scenario: Attempt to filter rosters by an invalid date
+	Given I have not selected a date from the date picker
+	When I click the "Load Data" button
+	Then I should see a toast with the message "Enter Email"
+	And the rosters should not be filtered

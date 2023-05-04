@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Volunteer form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-img src="assets/images/sosad.png"></ion-img>
+
+
+<ion-card color="light">
+  <ion-card-header>
+    <ion-label position="floating">Fullname</ion-label>
+    <ion-input type="text" [(ngModel)]="volunteer.fullname" required></ion-input>
+  </ion-card-header>
+
+
+  <ion-card-header>
+    <ion-label position="floating">Contact number</ion-label>
+    <ion-input type="text" [(ngModel)]="volunteer.mobile" required></ion-input>
+  </ion-card-header>
+
+  <ion-card-header>
+    <ion-label position="floating">Office</ion-label>
+    <ion-list>
+      <ion-item>
+        <ion-select color="success"[(ngModel)]="volunteer.location"  placeholder="office">
+          <ion-select-option value="cavan">Cavan</ion-select-option>
+          <ion-select-option  value="drogheda">Drogheda</ion-select-option>
+          <ion-select-option value="navan">Navan</ion-select-option>
+          <ion-select-option value="laois">Laois</ion-select-option>
+          <ion-select-option value="dundalk">Dundalk</ion-select-option>
+          <ion-select-option value="monaghan">Monaghan</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+
+  <ion-card-header>
+    <ion-label position="floating"> position</ion-label>
+    <ion-list>
+      <ion-item>
+        <ion-select color="success" [(ngModel)]="volunteer.position"  placeholder="position">
+          <ion-select-option value="admin">Administration</ion-select-option>
+          <ion-select-option  value="Support-worker">Counsellor</ion-select-option>
+          <ion-select-option value="intervention-officer">Intervention officer</ion-select-option>
+          <ion-select-option value="fundraising">Fundraising</ion-select-option>
+          <ion-select-option value="micro-volunteering">Micro volunteering</ion-select-option>
+          <ion-select-option value="messaging-service">Messaging service</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-button class="ion-padding" expand="full" (click)="createVolunteer(volunteer)">Submit</ion-button>
+  </ion-card-content>
+</ion-card>
+</ion-content>

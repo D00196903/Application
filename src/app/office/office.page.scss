@@ -1,0 +1,24 @@
+ion-item-sliding {
+  border-bottom: 1px solid rgba(0,0,0,0.13);
+}
+.ios{
+
+  --ion-background-color: #bbe3e3  ;
+  --ion-background-image: #bbe3e3 ;
+}
+
+.md{
+  --ion-background-color: #bbe3e3  ;
+  --ion-background-image: #bbe3e3 ;
+}
+ion-card-content,ion-icon,ion-card-subtitle,ion-card-title{
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+}
+ion-title{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
