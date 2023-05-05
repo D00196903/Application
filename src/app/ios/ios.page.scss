@@ -1,28 +1,54 @@
-ion-item-sliding {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
-}
-.ios{
-
-  --ion-background-color: #bbe3e3  ;
-  --ion-background-image: #bbe3e3 ;
+ion-header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.md{
-  --ion-background-color: #bbe3e3  ;
-  --ion-background-image: #bbe3e3 ;
+ion-title {
+  color: #333;
+  font-size: 1.5rem;
 }
 
-ion-card-content,
-ion-icon,
-ion-card-subtitle,
-ion-card-title {
-  color:black;
-  font-family: "Times New Roman", Times, serif;
+ion-button {
+  margin-top: 1rem;
 }
-ion-title{
-  font-family: "Times New Roman", Times, serif;
-  font-size: 30px;
-  text-align: center;
-  color: black;
+
+ion-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+ion-card-header ion-card-title,
+ion-card-header ion-card-subtitle {
   font-weight: bold;
+}
+
+ion-card-content ion-label {
+  font-weight: bold;
+}
+
+ion-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-text {
+  font-weight: bold;
+}
+
+ion-list ion-item-sliding ion-item {
+  background-color: transparent;
+}
+
+ion-list ion-item-sliding ion-item ion-card {
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+ion-list ion-item-sliding ion-item ion-card-header {
+  padding-bottom: 0;
+}
+
+ion-list ion-item-sliding ion-item ion-card-content {
+  padding-top: 0;
 }

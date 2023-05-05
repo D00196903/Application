@@ -1,13 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Staff Menu </ion-title>
+    <ion-title>Staff Menu</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button [routerLink]="['/add-post']" color="success" expand="block">Create an event</ion-button>
-  <ion-button [routerLink]="['/show-request']" color="success" expand="block">call backs</ion-button>
-  <ion-button [routerLink]="['/show-volunteer']" color="success" expand="block">Volunteer applications</ion-button>
-  <ion-button [routerLink]="['/ios']" color="success" expand="block">Roster</ion-button>
-
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="12" size-md="6">
+        <ion-button [routerLink]="['/add-post']" color="success" expand="block" shape="round">
+          <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+          Create an event
+        </ion-button>
+        <ion-button [routerLink]="['/show-request']" color="success" expand="block" shape="round">
+          <ion-icon slot="start" name="call-outline"></ion-icon>
+        Requests
+        </ion-button>
+        <ion-button [routerLink]="['/show-volunteer']" color="success" expand="block" shape="round">
+          <ion-icon slot="start" name="people-outline"></ion-icon>
+         applications
+        </ion-button>
+        <ion-button [routerLink]="['/ios']" color="success" expand="block" shape="round">
+          <ion-icon slot="start" name="calendar-outline"></ion-icon>
+          Roster
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

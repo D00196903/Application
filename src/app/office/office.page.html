@@ -1,30 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title></ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Office details</ion-title>
+    <ion-title>Office Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list lines="none">
-
     <ion-item-sliding *ngFor="let office of offices">
       <ion-card color="light">
         <ion-card-header>
-          <ion-card-title>{{ office.location}}</ion-card-title>
-          <ion-card-subtitle>{{ office.coordinator}}</ion-card-subtitle>
-          <ion-card-subtitle>{{ office.address}}</ion-card-subtitle>
-          <ion-card-subtitle>{{ office.email}}</ion-card-subtitle>
-          <ion-card-subtitle>{{ office.contact}}</ion-card-subtitle>
+          <ion-card-title class="office-title">{{ office.location }}</ion-card-title>
+          <ion-card-subtitle class="office-coordinator">{{ office.coordinator }}</ion-card-subtitle>
+          <ion-card-subtitle class="office-address">{{ office.address }}</ion-card-subtitle>
+          <ion-card-subtitle class="office-email">{{ office.email }}</ion-card-subtitle>
+          <ion-card-subtitle class="office-contact">{{ office.contact }}</ion-card-subtitle>
         </ion-card-header>
       </ion-card>
     </ion-item-sliding>
-
   </ion-list>
-  <ion-button [routerLink]="['/buttons']" color="success" expand="block">Main menu</ion-button>
+  <ion-button [routerLink]="['/buttons']" color="success" expand="block">Main Menu</ion-button>
 </ion-content>

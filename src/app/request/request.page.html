@@ -1,33 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Request a call back</ion-title>
+    <ion-title>Request a Call Back</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-img src="assets/images/sosad.png"></ion-img>
-
 
   <ion-card color="light">
     <ion-card-header>
-      <ion-label position="floating">Fullname</ion-label>
+      <ion-label position="floating"><b>Full Name:</b></ion-label>
       <ion-input type="text" [(ngModel)]="request.fullname" required></ion-input>
     </ion-card-header>
 
-
     <ion-card-header>
-      <ion-label position="floating">Contact number</ion-label>
+      <ion-label position="floating"><b>Contact Number:</b></ion-label>
       <ion-input type="text" [(ngModel)]="request.mobile" required></ion-input>
     </ion-card-header>
 
     <ion-card-header>
-      <ion-label position="floating">Select an office you want a call back from office</ion-label>
+      <ion-label position="floating"><b>Select an Office for a Call Back:</b></ion-label>
       <ion-list>
         <ion-item>
-          <ion-select color="success"[(ngModel)]="request.office"  placeholder="offices">
+          <ion-select color="success" [(ngModel)]="request.office" placeholder="Select an office">
             <ion-select-option value="cavan">Cavan</ion-select-option>
-            <ion-select-option  value="drogheda">Drogheda</ion-select-option>
+            <ion-select-option value="drogheda">Drogheda</ion-select-option>
             <ion-select-option value="navan">Navan</ion-select-option>
             <ion-select-option value="laois">Laois</ion-select-option>
             <ion-select-option value="dundalk">Dundalk</ion-select-option>
@@ -37,16 +34,13 @@
       </ion-list>
     </ion-card-header>
 
-
     <ion-card-header>
-      <ion-label position="floating">Message</ion-label>
+      <ion-label position="floating"><b>Message:</b></ion-label>
       <ion-input type="text" [(ngModel)]="request.message" required></ion-input>
     </ion-card-header>
 
-
     <ion-card-header>
-
-      <ion-label position="floating">Outcome</ion-label>
+      <ion-label position="floating"><b>Outcome:</b></ion-label>
       <ion-input type="text" [(ngModel)]="request.outcome" required></ion-input>
     </ion-card-header>
 
