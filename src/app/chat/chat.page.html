@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="history">
+    <div *ngFor="let chat of chats" class="mb">
+      <ion-card class="white-background">
+        <ion-card-subtitle>
+          <span>{{chat.username}} (Sent: {{chat.timestamp | date:'long'}})</span>
+        </ion-card-subtitle>
+        <ion-card-content>
+          <p>{{chat.message}}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <form id="message" [formGroup]="form" (ngSubmit)="onChatSubmit(form.value)">
+    <ion-item lines="none">
+      <ion-label>Username</ion-label>
+      <ion-input formControlName="username"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Enter Chat</ion-label>
+      <ion-textarea formControlName="message"></ion-textarea>
+      <ion-buttons slot="end">
+        <ion-button type="submit">
+          <ion-icon name="send"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </form>
+</ion-footer>

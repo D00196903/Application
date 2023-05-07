@@ -1,0 +1,129 @@
+ion-header {
+  ion-toolbar {
+    ion-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+}
+
+ion-content {
+  #history {
+    .mb {
+      margin-bottom: 10px;
+      color: black;
+    }
+
+    ion-card {
+      ion-card-subtitle {
+        font-size: 14px;
+        color: black;
+
+        span {
+          display: block;
+        }
+      }
+
+      ion-card-content {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+ion-footer {
+  form#message {
+    ion-item {
+      ion-label {
+        font-size: 16px;
+        font-weight: bold;
+        color: black;
+      }
+
+      ion-input,
+      ion-textarea {
+        font-size: 16px;
+        background-color: #f6f6f6;
+        border-radius: 10px;
+        padding: 5px;
+      }
+
+      ion-button[type=submit] {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+.ios{
+
+  --ion-background-color: #bbe3e3  ;
+  --ion-background-image: #bbe3e3 ;
+}
+
+.md{
+  --ion-background-color: #bbe3e3  ;
+  --ion-background-image: #bbe3e3 ;
+}
+
+
+/* Style for the Chat page */
+ion-header {
+  background-color: #fff;
+}
+
+ion-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#history {
+  padding: 16px;
+}
+
+.mb {
+  margin-bottom: 16px;
+}
+
+ion-card-subtitle {
+  color: #555;
+  font-size: 14px;
+}
+
+ion-card-content {
+  padding: 8px 0;
+}
+
+ion-footer {
+  background-color: #fff;
+  padding: 16px;
+}
+
+#message ion-item {
+  margin-bottom: 8px;
+}
+
+ion-label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+ion-textarea {
+  height: 80px;
+}
+
+ion-button[type="submit"] {
+  --background: #007bff;
+  --color: #fff;
+}
+ion-title{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+.white-background {
+  --background: #ffffff;
+}
