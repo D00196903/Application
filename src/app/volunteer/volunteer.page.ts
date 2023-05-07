@@ -33,7 +33,7 @@ export class VolunteerPage  {
 
       //dismiss loader
       (await loader).dismiss();
-      this.navCtrl.navigateRoot("home");
+      this.navCtrl.navigateRoot("forms");
     }
   }
 

@@ -39,11 +39,6 @@
       <ion-input type="text" [(ngModel)]="request.message" required></ion-input>
     </ion-card-header>
 
-    <ion-card-header>
-      <ion-label position="floating"><b>Outcome:</b></ion-label>
-      <ion-input type="text" [(ngModel)]="request.outcome" required></ion-input>
-    </ion-card-header>
-
     <ion-card-content>
       <ion-button class="ion-padding" color="success" expand="full" (click)="createRequest(request)">Submit</ion-button>
     </ion-card-content>

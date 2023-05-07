@@ -33,7 +33,7 @@ export class RequestPage  {
 
       //dismiss loader
       (await loader).dismiss();
-      this.navCtrl.navigateRoot("home");
+      this.navCtrl.navigateRoot("forms");
     }
   }
 
@@ -49,10 +49,6 @@ export class RequestPage  {
 
     if (!this.request.message) {
       this.showToast("please leave a message");
-      return false;
-    }
-    if (!this.request.outcome) {
-      this.showToast("please fill in outcome");
       return false;
     }
 

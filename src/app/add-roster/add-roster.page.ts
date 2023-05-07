@@ -41,7 +41,7 @@ export class AddRosterPage {
 
       //dismiss loader
       (await loader).dismiss();
-      this.navCtrl.navigateRoot("buttons");
+      this.navCtrl.navigateRoot("ios");
     }
   }
 
