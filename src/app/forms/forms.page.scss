@@ -1,5 +1,50 @@
+
 /* Menu */
 ion-menu {
+  --width: 250px;
+  --background: #f4f4f4;
+}
+
+/* Menu toolbar */
+ion-menu ion-toolbar {
+  --background: #3880ff;
+  --color: #ffffff;
+}
+
+/* Menu items */
+ion-menu ion-item {
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --color: #444444;
+}
+
+ion-menu ion-item:hover {
+  --background: #e0e0e0;
+}
+
+/* Header toolbar */
+ion-header ion-toolbar {
+  --background: #bbe3e3;
+  --color: #ffffff;
+}
+
+/* Ion-card */
+ion-card {
+  margin: 16px;
+  
+}
+.white-background {
+  --background: #ffffff;
+}
+
+/* Ion-card content */
+ion-card-content {
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --padding-top: 16px;
+  
   --width: 250px;
   --background: #f4f4f4;
 }
@@ -39,31 +84,7 @@ ion-card-content {
   --padding-start: 20px;
   --padding-end: 20px;
   --padding-top: 16px;
-  --padding-bottom: 16px;
 }
 
-/* Ion-button */
-ion-button {
-  margin: 16px;
-}
-.white-background {
-  --background: #ffffff;
-}
-ion-card-content{
-  text-align: center;
-  color: black;
-}
-ion-img{
-  max-width: 20%;
-  max-width: 40%;
-  height: auto;
-  
-  
-}
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Set the height of the container if you want to center the image vertically within a specific height */
-  /* height: 100vh; */
-}
+
+

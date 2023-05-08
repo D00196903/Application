@@ -1,7 +1,7 @@
 <ion-menu side="start" menuId="mainMenu" contentId="mainContent">
   <ion-header>
     <ion-toolbar>
-      <ion-title>
+      <ion-title class="main-title">
         Menu
       </ion-title>
     </ion-toolbar>
@@ -12,19 +12,19 @@
         <ion-button [routerLink]="['/request']" expand="block" color="success">Request a call back</ion-button>
       </ion-item>
       <ion-item>
-        <ion-button [routerLink]="['/volunteer']" expand="block" color="success">volunteer</ion-button>
+        <ion-button [routerLink]="['/volunteer']" expand="block" color="success">Volunteer</ion-button>
       </ion-item>
       <ion-item>
-        <ion-button [routerLink]="['/video']" color="success" expand="block">Videos</ion-button>
+        <ion-button [routerLink]="['/video']" expand="block" color="success">Videos</ion-button>
       </ion-item>
       <ion-item>
-        <ion-button [routerLink]="['/maps']" color="success" expand="block">Office Location</ion-button>
+        <ion-button [routerLink]="['/maps']" expand="block" color="success">Office Location</ion-button>
       </ion-item>
       <ion-item>
-        <ion-button [routerLink]="['/show']" color="success" expand="block">Events</ion-button>
+        <ion-button [routerLink]="['/show']" expand="block" color="success">Events</ion-button>
       </ion-item>
       <ion-item>
-        <ion-button [routerLink]="['/chat']" color="success" expand="block">chat</ion-button>
+        <ion-button [routerLink]="['/chat']" expand="block" color="success">Chat</ion-button>
       </ion-item>
     </ion-list>
   </ion-content>
@@ -45,8 +45,8 @@
 
 <ion-content [fullscreen]="true">
   <div class="image-container">
-  <ion-img src="assets/images/image.jpg" ></ion-img>
-</div>
+    <ion-img src="assets/images/image.jpg"></ion-img>
+  </div>
   <ion-card *ngIf="quote" class="white-background">
     <ion-card-content>
       <p>{{ quote.content }}</p>

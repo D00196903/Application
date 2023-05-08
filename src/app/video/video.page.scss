@@ -1,32 +1,42 @@
-ion-item-sliding {
-  border-bottom: 1px solid rgba(0,0,0,0.13);
-}
-.ios{
 
-  --ion-background-color: #bbe3e3  ;
-  --ion-background-image: #bbe3e3 ;
+ion-header {
+  --background: #4CAF50;
 }
 
-.md{
-  --ion-background-color: #bbe3e3  ;
-  --ion-background-image: #bbe3e3 ;
+ion-toolbar {
+  --color: white;
 }
-ion-card-content,ion-icon,ion-card-subtitle,ion-card-title{
-  color: white;
-  font-family: "Times New Roman", Times, serif;
-}
-ion-title{
-  font-family: "Times New Roman", Times, serif;
-  font-size: 30px;
-  text-align: center;
-  color: black;
+
+ion-title {
+  font-size: 1.5rem;
   font-weight: bold;
+  color: Black;
 }
 
+ion-content {
+  --ion-background-color: #bbe3e3;
+}
+
+ion-card {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+ion-card-header {
+  background-color: #3880ff;
+}
+
+ion-card-title {
+  color: Black;
+}
+
+ion-card-content {
+  font-family: "Times New Roman", Times, serif;
+}
 
 @media only screen and (max-width: 600px) {
   body {
-    --ion-background-color: #85C1E9  ;
-  --ion-background-image: #85C1E9   ;
+    --ion-background-color: #85C1E9;
   }
 }

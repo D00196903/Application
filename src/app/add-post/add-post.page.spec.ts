@@ -39,7 +39,7 @@ describe('AddPostPage', () => {
 
   describe('formValidation', () => {
     it('should return false if title is not provided', () => {
-      component.event = { title: '', location: 'New York', details: 'Party at the park' };
+      component.event = { title: '', location: 'Drogheda', details: 'Party at the park' };
       expect(component.formValidation()).toBeFalsy();
       expect(toastControllerSpy.create).toHaveBeenCalled();
     });
@@ -51,7 +51,7 @@ describe('AddPostPage', () => {
     });
 
     it('should return false if details are not provided', () => {
-      component.event = { title: 'Park Party', location: 'New York', details: '' };
+      component.event = { title: 'Park Party', location: '', details: '' };
       expect(component.formValidation()).toBeFalsy();
       expect(toastControllerSpy.create).toHaveBeenCalled();
     });

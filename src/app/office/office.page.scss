@@ -1,21 +1,29 @@
+ion-card {
+  margin: 16px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
 .office-title {
   font-weight: bold;
   font-size: 1.2rem;
+  margin-bottom: 8px;
 }
 
 .office-coordinator {
   font-weight: bold;
   font-size: 1rem;
+  margin-bottom: 4px;
 }
 
-.office-address {
-  font-size: 0.9rem;
-}
-
-.office-email {
-  font-size: 0.9rem;
-}
-
+.office-address,
+.office-email,
 .office-contact {
   font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+ion-button {
+  margin: 16px;
+  border-radius: 10px;
 }
