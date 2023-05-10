@@ -61,8 +61,4 @@ export class AddPostPage {
     })
       .then(toastData => toastData.present());
   }
-
-
-
-
 }

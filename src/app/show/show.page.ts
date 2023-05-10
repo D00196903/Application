@@ -70,7 +70,4 @@ export class ShowPage {
     })
       .then(toastData => toastData.present());
   }
-
-
-
 }
