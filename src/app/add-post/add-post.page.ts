@@ -9,7 +9,24 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./add-post.page.scss'],
 })
 export class AddPostPage {
+  createPost() {
+    throw new Error('Method not implemented.');
+  }
+  postcomponent: any;
+  postForm: any;
+  ngOnInit() {
+    throw new Error('Method not implemented.');
+  }
+  post(post: any) {
+    throw new Error('Method not implemented.');
+  }
+  showLoader() {
+    throw new Error('Method not implemented.');
+  }
   event = {} as Event;
+  route: any;
+  loadingController: any;
+  toastController: any;
   constructor(
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,

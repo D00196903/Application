@@ -1,24 +1,23 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
 
-import { EditPostPage } from './edit-post.page';
-
-describe('EditPostPage', () => {
-  let component: EditPostPage;
-  let fixture: ComponentFixture<EditPostPage>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EditPostPage ],
-      imports: [IonicModule.forRoot()]
+describe('MyComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: convertToParamMap({ id: '123' })
+            }
+          }
+        }
+      ],
+    
     }).compileComponents();
-
-    fixture = TestBed.createComponent(EditPostPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
+  
 });

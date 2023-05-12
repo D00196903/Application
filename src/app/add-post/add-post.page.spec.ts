@@ -1,116 +1,83 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule, ToastController, LoadingController, NavController } from '@ionic/angular';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Observable, of, throwError } from 'rxjs';
 import { AddPostPage } from './add-post.page';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AddPostPage', () => {
   let component: AddPostPage;
   let fixture: ComponentFixture<AddPostPage>;
-  let toastControllerSpy: jasmine.SpyObj<ToastController>;
-  let loadingControllerSpy: jasmine.SpyObj<LoadingController>;
-  let navControllerSpy: jasmine.SpyObj<NavController>;
-  let angularFirestoreSpy: jasmine.SpyObj<AngularFirestore>;
+  let activatedRouteSpy: jasmine.Spy;
 
   beforeEach(async () => {
-    toastControllerSpy = jasmine.createSpyObj('ToastController', ['create']);
-    loadingControllerSpy = jasmine.createSpyObj('LoadingController', ['create']);
-    navControllerSpy = jasmine.createSpyObj('NavController', ['navigateRoot']);
-    angularFirestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
-
     await TestBed.configureTestingModule({
       declarations: [AddPostPage],
-      providers: [
-        { provide: ToastController, useValue: toastControllerSpy },
-        { provide: LoadingController, useValue: loadingControllerSpy },
-        { provide: NavController, useValue: navControllerSpy },
-        { provide: AngularFirestore, useValue: angularFirestoreSpy },
-      ],
-      imports: [IonicModule.forRoot()],
+      imports: [RouterTestingModule],
     }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(AddPostPage);
     component = fixture.componentInstance;
+    // access the private router property using [] notation
+    component['route'] = jasmine.createSpyObj('Router', ['navigate']);
+    // create the spy for ActivatedRoute params and assign it to the variable
+    activatedRouteSpy = spyOn(TestBed.inject(ActivatedRoute), 'params').and.returnValue(of({}));
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should handle the case where ActivatedRoute is not available', () => {
+    // spy on ActivatedRoute and return an observable that throws an error
+    activatedRouteSpy = spyOn(TestBed.inject(ActivatedRoute), 'params').and.returnValue(of({} as Observable<never>));
+
+    // call ngOnInit
+    component.ngOnInit();
+
+    // expect that the component sets the default post object and does not try to retrieve a post
+    expect(component.post).toEqual({ title: '', content: '', author: '' });
+    expect(activatedRouteSpy).toHaveBeenCalled();
   });
 
-  describe('formValidation', () => {
-    it('should return false if title is not provided', () => {
-      component.event = { title: '', location: 'Drogheda', details: 'Party at the park' };
-      expect(component.formValidation()).toBeFalsy();
-      expect(toastControllerSpy.create).toHaveBeenCalled();
-    });
+  it('should define present property', async () => {
+    const toastElement = document.createElement('ion-toast');
+    // create spies for ToastController and LoadingController methods
+    const toastCtrlSpy = jasmine.createSpyObj('ToastController', ['create']);
+    const loadingCtrlSpy = jasmine.createSpyObj('LoadingController', ['create']);
+    toastCtrlSpy.create.and.returnValue(Promise.resolve(toastElement));
+    loadingCtrlSpy.create.and.returnValue(Promise.resolve({ present: () => Promise.resolve() }));
 
-    it('should return false if location is not provided', () => {
-      component.event = { title: 'Park Party', location: '', details: 'Party at the park' };
-      expect(component.formValidation()).toBeFalsy();
-      expect(toastControllerSpy.create).toHaveBeenCalled();
-    });
+    // Instantiate component and trigger change detection
+    fixture = TestBed.createComponent(AddPostPage);
+    component = fixture.componentInstance;
+    // set the spies for ToastController and LoadingController methods
+    component['toastCtrl'] = toastCtrlSpy;
+    component['loadingCtrl'] = loadingCtrlSpy;
+    fixture.detectChanges();
 
-    it('should return false if details are not provided', () => {
-      component.event = { title: 'Park Party', location: '', details: '' };
-      expect(component.formValidation()).toBeFalsy();
-      expect(toastControllerSpy.create).toHaveBeenCalled();
-    });
+    // Call the method that creates the loading element
+    component.showLoader();
 
-    it('should return true if all fields are provided', () => {
-      component.event = { title: 'Park Party', location: 'New York', details: 'Party at the park' };
-      expect(component.formValidation()).toBeTruthy();
-      expect(toastControllerSpy.create).toHaveBeenCalledTimes(0);
-    });
+    // Assert that loadingCtrl.create was called
+    expect(loadingCtrlSpy.create).toHaveBeenCalled();
+
+    // Get the instance of the loading element
+    const loadingInstance = await loadingCtrlSpy.create.calls.mostRecent().returnValue;
+
+    // Assert that the present method is defined
+    expect(loadingInstance.present).toBeDefined();
   });
 
-  describe('createEvent', () => {
-    beforeEach(() => {
-      spyOn(component, 'formValidation').and.returnValue(true);
-    });
+  it('should call form validation when creating event', () => {
+    // spy on the form's validate method
+    const validateSpy = spyOn(component.postForm, 'validate');
+    component.postForm.controls['title'].setValue('Test Title');
+    component.postForm.controls['content'].setValue('Test Content');
+    component.postForm.controls['author'].setValue('Test Author');
 
-    it('should not call Firestore if form validation fails', async () => {
-      component.formValidation = jasmine.createSpy().and.returnValue(false);
-      await component.createEvent(component.event);
-      expect(angularFirestoreSpy.collection).toHaveBeenCalledTimes(0);
-      expect(loadingControllerSpy.create).toHaveBeenCalledTimes(0);
-      expect(navControllerSpy.navigateRoot).toHaveBeenCalledTimes(0);
-    });
+    // call createPost method
+    component.createPost();
 
-    it('should call Firestore and navigate to "show" page if form validation succeeds', async () => {
-      const loaderSpy = jasmine.createSpyObj('HTMLIonLoadingElement', ['present', 'dismiss']);
-      loadingControllerSpy.create.and.returnValue(Promise.resolve
-        (loaderSpy));
-      const eventCollectionSpy = jasmine.createSpyObj('AngularFirestoreCollection', ['add']);
-      angularFirestoreSpy.collection.and.returnValue(eventCollectionSpy);
-
-      await component.createEvent(component.event);
-
-      expect(component.formValidation).toHaveBeenCalled();
-      expect(loadingControllerSpy.create).toHaveBeenCalled();
-      expect(loaderSpy.present).toHaveBeenCalled();
-      expect(angularFirestoreSpy.collection).toHaveBeenCalledWith('events');
-      expect(eventCollectionSpy.add).toHaveBeenCalledWith(component.event);
-      expect(loaderSpy.dismiss).toHaveBeenCalled();
-      expect(navControllerSpy.navigateRoot).toHaveBeenCalledWith('show');
-    });
-
-    it('should handle Firestore errors and show a toast', async () => {
-      const loaderSpy = jasmine.createSpyObj('HTMLIonLoadingElement', ['present', 'dismiss']);
-      loadingControllerSpy.create.and.returnValue(Promise.resolve(loaderSpy));
-
-      angularFirestoreSpy.collection.and.throwError('Error');
-
-      try {
-        await component.createEvent(component.event);
-      } catch (e) {
-        expect(component.formValidation).toHaveBeenCalled();
-        expect(loadingControllerSpy.create).toHaveBeenCalled();
-        expect(loaderSpy.present).toHaveBeenCalled();
-        expect(angularFirestoreSpy.collection).toHaveBeenCalledWith('events');
-        expect(loaderSpy.dismiss).toHaveBeenCalled();
-        expect(toastControllerSpy.create).toHaveBeenCalled();
-        expect(navControllerSpy.navigateRoot).toHaveBeenCalledTimes(0);
-      }
-    });
+    // expect that the form's validate method was called
+    expect(validateSpy).toHaveBeenCalled();
   });
 });

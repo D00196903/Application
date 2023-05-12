@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { RouteReuseStrategy, RouterModule } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -25,7 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
   AngularFireAuthModule,
   AngularFirestoreModule,
   ReactiveFormsModule,
-  HttpClientModule // Add HttpClientModule here
+  HttpClientModule, // Add HttpClientModule here
+  RouterModule,
+  AngularFireAuthModule,
+  BrowserModule
 ],
 
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
