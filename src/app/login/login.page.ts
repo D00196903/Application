@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { ToastController, LoadingController, NavController } from '@ionic/angular';
-import { User } from "../models/user.model";
+import { User } from '../models/user.model';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,43 +17,40 @@ export class LoginPage {
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private afAuth: AngularFireAuth,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private router: Router
   ) { }
 
   async login(user: User) {
     if (this.formValidation()) {
       // show loader
-      let loader = this.loadingCtrl.create({
-        message: 'PLease Wait...'
+      let loader = await this.loadingCtrl.create({
+        message: 'Please Wait...'
       });
-      (await loader).present();
+      await loader.present();
 
       try {
-        await this.afAuth
-          .signInWithEmailAndPassword(user.email, user.password)
-          .then(data => {
-            console.log(data);
-
-            // redirect to home page
-            this.navCtrl.navigateRoot("buttons");
-          });
+        await this.afAuth.signInWithEmailAndPassword(user.email, user.password);
+        console.log('Login successful');
+        // redirect to home page
+        this.navCtrl.navigateRoot('/buttons');
       } catch (e) {
-        this.showToast("Enter Email");
+        this.showToast('Enter Email');
       }
 
       //dismiss loader
-      (await loader).dismiss();
+      await loader.dismiss();
     }
   }
 
   formValidation() {
     if (!this.user.email) {
-      this.showToast("Enter email");
+      this.showToast('Enter email');
       return false;
     }
 
     if (!this.user.password) {
-      this.showToast("Enter password");
+      this.showToast('Enter password');
       return false;
     }
     return true;
@@ -64,4 +64,14 @@ export class LoginPage {
       .then(toastData => toastData.present());
   }
 
+  async loginWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try {
+      const result = await this.afAuth.signInWithPopup(provider);
+      console.log('Login successful:', result.user);
+      this.router.navigate(['/buttons']); // redirect to staff menu page
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  }
 }

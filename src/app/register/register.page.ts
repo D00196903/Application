@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ToastController, LoadingController, NavController } from '@ionic/angular';
 import { User } from "../models/user.model";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +12,11 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class RegisterPage {
   user = {} as User;
+
   constructor(private toastCtrl: ToastController,
-    private loadingCtrl: LoadingController,
-    private afAuth: AngularFireAuth,
-    private navCtrl: NavController
+              private loadingCtrl: LoadingController,
+              private afAuth: AngularFireAuth,
+              private navCtrl: NavController
   ) { }
 
   async register(user: User) {
@@ -62,4 +65,26 @@ export class RegisterPage {
     })
       .then(toastData => toastData.present());
   }
+
+  async googleSignIn() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const credential = await this.afAuth.signInWithPopup(provider);
+    return credential.user;
+  }
+
+  async registerWithGoogle() {
+    try {
+      const user = await this.googleSignIn();
+      console.log('User successfully registered with Google:', user);
+
+      // Add your own logic here to save the user to your database 
+
+      // Redirect to login page
+      this.navCtrl.navigateRoot("login");
+
+    } catch (error) {
+      console.error('Error registering with Google:', error);
+    }
+}
+
 }

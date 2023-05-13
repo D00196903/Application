@@ -3,17 +3,19 @@ capacitor-google-map {
   width: 25%;
   height: 300px;
 }
-.ios{
 
-  --ion-background-color: #bbe3e3  ;
-  --ion-background-image: #bbe3e3 ;
+.ios {
+
+  --ion-background-color: #bbe3e3;
+  --ion-background-image: #bbe3e3;
 }
 
-.md{
-  --ion-background-color: #bbe3e3  ;
-  --ion-background-image: #bbe3e3 ;
+.md {
+  --ion-background-color: #bbe3e3;
+  --ion-background-image: #bbe3e3;
 }
-ion-title{
+
+ion-title {
   font-family: "Times New Roman", Times, serif;
   font-size: 30px;
   text-align: center;
@@ -21,8 +23,14 @@ ion-title{
   font-weight: bold;
 }
 
-P{
+P {
   white-space: pre-wrap;
   line-height: 1.2;
 
+}
+
+capacitor-google-map {
+  display: inline-block;
+  width: 20%;
+  height: 300px;
 }

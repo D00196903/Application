@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @NgModule({
   declarations: [AppComponent],

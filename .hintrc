@@ -12,6 +12,12 @@
           "meta[name=color-scheme]"
         ]
       }
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
     ]
   }
 }

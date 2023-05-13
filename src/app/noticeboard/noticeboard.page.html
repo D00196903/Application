@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Noticeboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card class="white-background" *ngFor="let notice of notices | async">
+      <ion-card-header>
+        <ion-card-title>{{ notice.title }}</ion-card-title>
+        <ion-card-subtitle>{{ notice.date }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{ notice.content }}
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-list>
+    <form #newNoticeForm="ngForm" (ngSubmit)="addNotice()">
+      <ion-item>
+        <ion-input name="title" [(ngModel)]="newNotice.title" required placeholder="Title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea name="content" [(ngModel)]="newNotice.content" required placeholder="Content"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-datetime displayFormat="DD MMM YYYY" name="date" [(ngModel)]="newNotice.date" required></ion-datetime>
+      </ion-item>
+      <ion-button type="submit" expand="block" [disabled]="newNoticeForm.invalid">Add Notice</ion-button>
+    </form>
+  </ion-list>
+</ion-content>

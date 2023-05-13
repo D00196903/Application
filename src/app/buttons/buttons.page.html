@@ -28,6 +28,15 @@
           <ion-icon slot="start" name="chatbubble-ellipses-outline"></ion-icon>
           Chat
         </ion-button>
+        <ion-button [routerLink]="['/noticeboard']" color="success" expand="block" shape="round">
+          <ion-icon slot="start" name="clipboard-outline"></ion-icon>
+         Noticeboard
+        </ion-button>
+
+      <ion-button (click)="logout()" color="success" expand="block" shape="round">
+        <ion-icon name="log-out-outline"></ion-icon> Logout
+      </ion-button>
+        
       </ion-col>
     </ion-row>
   </ion-grid>
