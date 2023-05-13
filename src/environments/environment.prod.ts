@@ -12,5 +12,5 @@ export const environment = {
   },
   keys: {
     googleMaps: 'AIzaSyDXOrBOF4cm7w1YkEk3IgHGtbudEFVUCLU'
-  }
+  },
 };

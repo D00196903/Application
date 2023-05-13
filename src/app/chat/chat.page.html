@@ -3,7 +3,6 @@
     <ion-title class="main-title">Chat</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <div id="history">
     <div *ngFor="let chat of chats" class="mb">
@@ -18,9 +17,9 @@
     </div>
   </div>
 </ion-content>
-
 <ion-footer>
-  <form id="message" [formGroup]="form" (ngSubmit)="onChatSubmit(form.value)">
+  <form id="message" [formGroup]="form" (ngSubmit)="onChatSubmit()">
+
     <ion-item lines="none">
       <ion-label>Username</ion-label>
       <ion-input formControlName="username"></ion-input>
