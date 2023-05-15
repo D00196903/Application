@@ -3,6 +3,7 @@ import { ToastController, LoadingController, NavController } from '@ionic/angula
 import { Event } from '../models/event.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
+
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.page.html',
@@ -27,12 +28,13 @@ export class AddPostPage {
   route: any;
   loadingController: any;
   toastController: any;
+  isLoggedIn: boolean = false;
   constructor(
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
     private firstore: AngularFirestore
-  ) { }
+  ) {  }
 
   async createEvent(event: Event) {
     if (this.formValidation()) {

@@ -21,12 +21,10 @@
   <form id="message" [formGroup]="form" (ngSubmit)="onChatSubmit()">
 
     <ion-item lines="none">
-      <ion-label>Username</ion-label>
-      <ion-input formControlName="username"></ion-input>
+      <ion-input formControlName="username" placeholder="Name"></ion-input>
     </ion-item>
     <ion-item lines="none">
-      <ion-label>Enter Chat</ion-label>
-      <ion-textarea formControlName="message"></ion-textarea>
+      <ion-textarea formControlName="message"placeholder="Message"></ion-textarea>
       <ion-buttons slot="end">
         <ion-button type="submit">
           <ion-icon name="send"></ion-icon>

@@ -15,13 +15,11 @@
         <ion-card color="light">
           <ion-card-content>
             <ion-item>
-              <ion-label position="floating">Email</ion-label>
-              <ion-input type="email" [(ngModel)]="user.email" required></ion-input>
+              <ion-input type="email" [(ngModel)]="user.email" required placeholder="Email"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label position="floating">Password</ion-label>
-              <ion-input type="password" [(ngModel)]="user.password" required></ion-input>
+              <ion-input type="password" [(ngModel)]="user.password" required placeholder="Password"></ion-input>
             </ion-item>
 
             <ion-button color="success" (click)="registerWithGoogle()">Register with Google</ion-button>

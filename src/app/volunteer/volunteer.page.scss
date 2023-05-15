@@ -34,9 +34,6 @@ ion-card-title{
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
 }
-@media only screen and (max-width: 600px) {
-  body {
-    --ion-background-color: #85C1E9  ;
-  --ion-background-image: #85C1E9   ;
-  }
+.white-background {
+  --background: #ffffff;
 }

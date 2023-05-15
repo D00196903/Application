@@ -29,7 +29,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
   HttpClientModule, // Add HttpClientModule here
   RouterModule,
   AngularFireAuthModule,
-  BrowserModule
+  BrowserModule,
 ],
 
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

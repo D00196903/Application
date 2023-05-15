@@ -7,30 +7,20 @@
 <ion-content>
 
   <ion-item>
-    <ion-label position="floating">Fullname</ion-label>
-    <ion-input type="text" [(ngModel)]="request.fullname" required></ion-input>
+    <ion-input type="text" [(ngModel)]="request.fullname" required placeholder="Fullname"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Office</ion-label>
-    <ion-input type="text" [(ngModel)]="request.office" required></ion-input>
-  </ion-item>
-
-
-  <ion-item>
-    <ion-label position="floating">Contact number</ion-label>
-    <ion-input type="text" [(ngModel)]="request.mobile" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Message</ion-label>
-    <ion-input type="text" [(ngModel)]="request.message" required></ion-input>
+    <ion-input type="text" [(ngModel)]="request.office" required placeholder="Office"></ion-input>
   </ion-item>
 
 
   <ion-item>
-    <ion-label position="floating">Outcome</ion-label>
-    <ion-input type="text" [(ngModel)]="request.outcome" required></ion-input>
+    <ion-input type="text" [(ngModel)]="request.mobile" required placeholder="Contact number"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="request.message" required placeholder="Message"></ion-input>
   </ion-item>
 
   <ion-button class="ion-padding" color="danger" expand="full" (click)="updateRequest(request)">Update</ion-button>
