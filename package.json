@@ -28,7 +28,7 @@
     "@capacitor/ios": "5.0.0",
     "@capacitor/keyboard": "5.0.0",
     "@capacitor/status-bar": "5.0.0",
-    "@ionic/angular": "^7.0.0",
+    "@ionic/angular": "^7.0.12",
     "@ionic/cli": "^6.0.0",
     "@types/uuid": "^9.0.1",
     "firebase": "^9.22.0",
