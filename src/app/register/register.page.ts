@@ -71,28 +71,18 @@ export class RegisterPage {
     const credential = await this.afAuth.signInWithPopup(provider);
     return credential.user;
   }
-//This is asynchronous function named registerWithGoogle. 
-//The async keyword indicates that the function will use await 
-//to handle promises and will implicitly return a promise.
-  async registerWithGoogle()
-   {
+
+  async registerWithGoogle() {
     try {
       const user = await this.googleSignIn();
-      //logs a success message to the console, indicating that the user has
-      // been successfully registered with Google. It also displays the value of the user 
-     //so now the user can login using their google account
       console.log('User successfully registered with Google:', user);
 
-      // when the user sucessfully registers using google they will then be 
-      //redirected to the login page where they can login 
+      // Add your own logic here to save the user to your database 
+
+      // Redirect to login page
       this.navCtrl.navigateRoot("login");
 
-    } 
-    //is executed if an error occurs within the try block. The error object is caught 
-    //and stored in the error variable. It then logs an error message to the console, 
-    //indicating that there was an error registering with Google, along with the error object itself.
-    catch (error) 
-    {
+    } catch (error) {
       console.error('Error registering with Google:', error);
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NavController } from '@ionic/angular';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-buttons',
@@ -8,24 +8,18 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./buttons.page.scss'],
 })
 export class ButtonsPage implements OnInit {
-  userEmail!: string;
 
   constructor(
-    private navCtrl: NavController,
-    private authService: AuthenticationService
+    private afAuth: AngularFireAuth,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
-    this.loadUserEmail();
-  }
-
-  async loadUserEmail() {
-    this.userEmail = await this.authService.getUserEmail();
   }
 
   async logout() {
     try {
-      await this.authService.logout();
+      await this.afAuth.signOut();
       this.navCtrl.navigateRoot('login');
     } catch (error) {
       console.log('Error logging out', error);

@@ -63,14 +63,8 @@ export class LoginPage {
     })
       .then(toastData => toastData.present());
   }
-// this code snippet demonstrates a function that allows the user to log
-// in using their Google account. It creates a Google authentication provider, 
-//attempts to sign in the user using a popup authentication method, logs the
-// success message and user information upon successful login, redirects the user 
-//to the staff menu page, and handles any errors that may occur during the login process.
+
   async loginWithGoogle() {
-    //creates a new instance of the GoogleAuthProvider class from the Firebase 
-    //authentication library. It will be used to authenticate the user with Google.
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
       const result = await this.afAuth.signInWithPopup(provider);

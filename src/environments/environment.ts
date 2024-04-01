@@ -13,7 +13,7 @@ export const environment = {
     messagingSenderId: "701803908671",
     appId: "1:701803908671:web:dcbe7268b85d3af12f328a",
     measurementId: "G-K01YLWCEXN"
-  },  
+  },
   keys: {
     googleMaps: 'AIzaSyDXOrBOF4cm7w1YkEk3IgHGtbudEFVUCLU'
   },
