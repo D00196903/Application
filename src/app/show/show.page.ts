@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Event } from '../models/event.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-show',
@@ -9,65 +10,69 @@ import { Event } from '../models/event.model';
   styleUrls: ['./show.page.scss'],
 })
 export class ShowPage {
-  events: any;
+  events: any[] = [];  // Initialized as an empty array
+
+
   constructor(
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private firstore: AngularFirestore
+    private firestore: AngularFirestore,  // Corrected spelling
+    private authService: AuthService
   ) { }
+
   ionViewWillEnter() {
     this.getEvents();
   }
 
   async getEvents() {
-    // show loader
-    let loader = await this.loadingCtrl.create({
+    const loader = await this.loadingCtrl.create({
       message: 'Please Wait...'
     });
-    loader.present();
+    await loader.present();
 
-    try {
-      this.firstore
-        .collection<Event>("events")
-        .snapshotChanges()
-        .subscribe(data => {
-          this.events = data.map(e => {
-            return {
-              id: e.payload.doc.id,
-              // title: e.payload.doc.data(),
-              // details: e.payload.doc.data()
-              title: e.payload.doc.data().title,
-              details: e.payload.doc.data().details,
-              location: e.payload.doc.data().location
-            };
-          });
-          //dismiss  loader
-          loader.dismiss();
-        });
-
-    } catch (e) {
-      this.showToast("Enter Email");
-    }
+    this.firestore
+      .collection<Event>("events")
+      .snapshotChanges()
+      .subscribe(data => {
+        this.events = data.map(e => ({
+          id: e.payload.doc.id,
+          title: e.payload.doc.data()?.title,  // Optional chaining if data might be undefined
+          details: e.payload.doc.data()?.details,
+          location: e.payload.doc.data()?.location
+        }));
+        loader.dismiss();
+      }, error => {
+        this.showToast("Error loading events");  // More accurate error message
+        console.error("Error loading events:", error);
+        loader.dismiss();
+      });
   }
 
   async deleteEvent(id: string) {
-    // show loader
-    let loader = this.loadingCtrl.create({
+    const loader = await this.loadingCtrl.create({
       message: 'Please Wait...'
     });
-    (await loader).present();
+    await loader.present();
 
-    await this.firstore.doc("events/" + id).delete();
-
-    //dismiss  loader
-    (await loader).dismiss();
+    try {
+      await this.firestore.doc(`events/${id}`).delete();
+      this.showToast("Event deleted successfully");
+    } catch (error) {
+      this.showToast("Error deleting event");
+      console.error("Error deleting event:", error);
+    } finally {
+      loader.dismiss();
+    }
   }
 
   showToast(message: string) {
     this.toastCtrl.create({
-      message: message,
+      message,
       duration: 3000
-    })
-      .then(toastData => toastData.present());
+    }).then(toast => toast.present());
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated;
   }
 }

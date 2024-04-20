@@ -1,90 +1,62 @@
+/* Global Colors */
+:root {
+  --ion-color-primary: #3880ff; /* Primary blue for highlights and buttons */
+  --ion-color-secondary: #32db64; /* Secondary green for other elements */
+  --ion-color-tertiary: #7044ff; /* Tertiary purple for accents */
+  --ion-background-color: #f4f4f4; /* Light grey background for menu content */
+  --ion-item-hover-color: #e0e0e0; /* Hover effect for items */
+}
 
 /* Menu */
 ion-menu {
-  --width: 250px;
-  --background: #f4f4f4;
+  --width: 280px; /* Set the width of the menu */
+  --background: var(--ion-background-color);
 }
 
-/* Menu toolbar */
+/* Menu Toolbar Styling */
 ion-menu ion-toolbar {
-  --background: #3880ff;
+  --background: var(--ion-color-primary);
   --color: #ffffff;
 }
 
-/* Menu items */
+/* Menu Item Styling */
 ion-menu ion-item {
   --padding-start: 20px;
   --padding-end: 20px;
-  --padding-top: 12px;
-  --padding-bottom: 12px;
-  --color: #444444;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  --color: #000;
+  --background: transparent; /* Ensure items have no background by default */
 }
 
 ion-menu ion-item:hover {
-  --background: #e0e0e0;
+  --background: var(--ion-item-hover-color); /* Light grey on hover */
 }
 
-/* Header toolbar */
+/* Buttons within Menu Items */
+.menu-button {
+  --background: var(--ion-color-primary); /* Primary color for buttons */
+  --background-activated: var(--ion-color-secondary); /* Secondary color when activated */
+  --background-focused: var(--ion-color-tertiary); /* Tertiary color when focused */
+  --border-radius: 8px; /* Rounded corners for buttons */
+}
+
+/* Header and Other Elements */
 ion-header ion-toolbar {
-  --background: #bbe3e3;
+  --background: var(--ion-color-primary);
   --color: #ffffff;
 }
 
-/* Ion-card */
 ion-card {
   margin: 16px;
-  
-}
-.white-background {
-  --background: #ffffff;
+  --background: #ffffff; /* White background for cards */
 }
 
-/* Ion-card content */
 ion-card-content {
-  --padding-start: 20px;
-  --padding-end: 20px;
-  --padding-top: 16px;
-  
-  --width: 250px;
-  --background: #f4f4f4;
+  padding: 20px;
 }
-
-/* Menu toolbar */
-ion-menu ion-toolbar {
-  --background: #3880ff;
-  --color: #ffffff;
+.menu-content {
+  --background: #f0f0f0; /* Light grey background */
+  padding: 10px; /* Example: Add padding if needed */
+  /* Add any additional styling rules you may require */
 }
-
-/* Menu items */
-ion-menu ion-item {
-  --padding-start: 20px;
-  --padding-end: 20px;
-  --padding-top: 12px;
-  --padding-bottom: 12px;
-  --color: #444444;
-}
-
-ion-menu ion-item:hover {
-  --background: #e0e0e0;
-}
-
-/* Header toolbar */
-ion-header ion-toolbar {
-  --background: #3880ff;
-  --color: #ffffff;
-}
-
-/* Ion-card */
-ion-card {
-  margin: 16px;
-}
-
-/* Ion-card content */
-ion-card-content {
-  --padding-start: 20px;
-  --padding-end: 20px;
-  --padding-top: 16px;
-}
-
-
-

@@ -1,129 +1,81 @@
+/* General Styles */
 ion-header {
-  ion-toolbar {
-    ion-title {
-      font-size: 24px;
-      font-weight: bold;
-    }
-  }
+  background-color: #f8f9fa;  /* Light grey background for the header */
+  border-bottom: 1px solid #dee2e6; /* Subtle border for separation */
 }
 
-ion-content {
-  #history {
-    .mb {
-      margin-bottom: 10px;
-      color: black;
-    }
-
-    ion-card {
-      ion-card-subtitle {
-        font-size: 14px;
-        color: black;
-
-        span {
-          display: block;
-        }
-      }
-
-      ion-card-content {
-        font-size: 16px;
-        line-height: 1.5;
-      }
-    }
-  }
-}
-
-ion-footer {
-  form#message {
-    ion-item {
-      ion-label {
-        font-size: 16px;
-        font-weight: bold;
-        color: black;
-      }
-
-      ion-input,
-      ion-textarea {
-        font-size: 16px;
-        background-color: #f6f6f6;
-        border-radius: 10px;
-        padding: 5px;
-      }
-
-      ion-button[type=submit] {
-        margin-left: 5px;
-      }
-    }
-  }
-}
-.ios{
-
-  --ion-background-color: #bbe3e3  ;
-  --ion-background-image: #bbe3e3 ;
-}
-
-.md{
-  --ion-background-color: #bbe3e3  ;
-  --ion-background-image: #bbe3e3 ;
-}
-
-
-/* Style for the Chat page */
-ion-header {
-  background-color: #fff;
+ion-toolbar {
+  --background: transparent; /* Ensures the toolbar inherits header color */
 }
 
 ion-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
+  text-align: center;
+  color: #007bff; /* Blue color for emphasis */
 }
 
+/* Chat History */
 #history {
   padding: 16px;
+  overflow-y: auto; /* Allows scrolling */
 }
 
-.mb {
-  margin-bottom: 16px;
+.chat-message {
+  margin-bottom: 12px;
+}
+
+ion-card {
+  --background: #ffffff; /* White background for chat cards */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Adds subtle shadow for depth */
 }
 
 ion-card-subtitle {
-  color: #555;
-  font-size: 14px;
-}
-
-ion-card-content {
-  padding: 8px 0;
-}
-
-ion-footer {
-  background-color: #fff;
-  padding: 16px;
-}
-
-#message ion-item {
-  margin-bottom: 8px;
-}
-
-ion-label {
-  font-size: 14px;
-  color: #555;
+  font-size: 12px;
+  color: #6c757d; /* Grey color for subtitle */
   margin-bottom: 4px;
 }
 
-ion-textarea {
-  height: 80px;
+ion-card-content {
+  font-size: 16px;
+  color: #343a40; /* Dark grey for text */
 }
 
-ion-button[type="submit"] {
-  --background: #007bff;
-  --color: #fff;
+/* Input and Button Styles */
+ion-footer {
+  background-color: #fff;
+  padding: 12px 16px; /* Consistent padding around the footer */
+  border-top: 1px solid #dee2e6; /* Separates footer from content */
 }
-ion-title{
-  font-family: "Times New Roman", Times, serif;
-  font-size: 30px;
-  text-align: center;
-  color: black;
-  font-weight: bold;
+
+ion-item {
+  --background: #e9ecef; /* Light grey background for input fields */
+  --padding-start: 8px;
+  --border-radius: 8px; /* Rounded corners for input fields */
+  margin-bottom: 8px; /* Space between input fields */
 }
-.white-background {
-  --background: #ffffff;
+
+ion-input, ion-textarea {
+  font-size: 16px;
+  color: #495057; /* Dark grey for input text */
+}
+
+ion-button {
+  --background: #007bff; /* Blue background for send button */
+  --color: black; /* White text for button */
+}
+
+ion-icon {
+  margin-right: 8px;
+  --color: black;  /* Space between icon and text */
+}
+
+.black-button {
+  --background: black; /* Sets the background of the button to black */
+  --color: white; /* Sets the text color to white */
+  --ripple-color: #ccc; /* Optional: changes the ripple effect color on click */
+}
+
+.black-button ion-icon {
+  color: white; /* Ensures the icon is also white */
 }

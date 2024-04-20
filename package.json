@@ -31,7 +31,7 @@
     "@ionic/angular": "^7.0.0",
     "@ionic/cli": "^6.0.0",
     "@types/uuid": "^9.0.1",
-    "firebase": "^10.10.0",
+    "firebase": "^10.11.0",
     "googleapis": "^134.0.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.5.0",

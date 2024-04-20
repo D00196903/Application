@@ -1,14 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="main-title">Chat</ion-title>
+    <ion-title>Chat</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <div id="history">
-    <div *ngFor="let chat of chats" class="mb">
+    <div *ngFor="let chat of chats" class="chat-message">
       <ion-card class="white-background">
         <ion-card-subtitle>
-          <span>{{chat.username}} (Sent: {{chat.timestamp | date:'long'}})</span>
+          <span>{{chat.username}} (Sent: {{chat.timestamp | date:'medium'}})</span>
         </ion-card-subtitle>
         <ion-card-content>
           <p>{{chat.message}}</p>
@@ -17,17 +18,17 @@
     </div>
   </div>
 </ion-content>
+
 <ion-footer>
   <form id="message" [formGroup]="form" (ngSubmit)="onChatSubmit()">
-
     <ion-item lines="none">
       <ion-input formControlName="username" placeholder="Name"></ion-input>
     </ion-item>
     <ion-item lines="none">
-      <ion-textarea formControlName="message"placeholder="Message"></ion-textarea>
+      <ion-textarea formControlName="message" placeholder="Message"></ion-textarea>
       <ion-buttons slot="end">
-        <ion-button type="submit">
-          <ion-icon name="send"></ion-icon>
+        <ion-button type="submit" class="black-button">
+          <ion-icon name="send"></ion-icon> Send
         </ion-button>
       </ion-buttons>
     </ion-item>
