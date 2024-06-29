@@ -1,0 +1,111 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Logged-in Users
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="notifications-outline"></ion-icon>
+        <ion-badge *ngIf="newFriendRequestsCount > 0">{{ newFriendRequestsCount }}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-label>
+        <h2>{{ user.displayName }}</h2>
+        <p>{{ user.email }}</p>
+        <p>Status: {{ user.status }} ({{ user.online ? 'Online' : 'Offline' }})</p>
+      </ion-label>
+      <ion-button (click)="addFriend(user.id!)" *ngIf="user.id && !isFriend(user.id) && !isFriendRequestSent(user.id)" color="primary">Add Friend</ion-button>
+      <ion-button (click)="cancelFriendRequest(user.id!)" *ngIf="user.id && isFriendRequestSent(user.id)" color="warning">Cancel Request</ion-button>
+      <ion-button (click)="sendPrivateMessage(user.id!)" *ngIf="user.id" color="secondary">Send Message</ion-button>
+      <ion-button (click)="fetchPrivateMessages(user.id!)" *ngIf="user.id" color="tertiary">
+        View Messages
+        <ion-badge *ngIf="newMessages[user.id]">{{ newMessages[user.id] }}</ion-badge>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Friends</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-item *ngFor="let friend of friends">
+      <ion-label>
+        <h2>{{ friend.displayName }}</h2>
+        <p>{{ friend.email }}</p>
+        <p>Status: {{ friend.status }} ({{ friend.online ? 'Online' : 'Offline' }})</p>
+      </ion-label>
+      <ion-button (click)="sendPrivateMessage(friend.id!)" *ngIf="friend.id" color="secondary">Send Message</ion-button>
+      <ion-button (click)="fetchPrivateMessages(friend.id!)" *ngIf="friend.id" color="tertiary">
+        View Messages
+        <ion-badge *ngIf="newMessages[friend.id]">{{ newMessages[friend.id] }}</ion-badge>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Friend Requests Sent</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-item *ngFor="let sentRequest of friendRequestsSent">
+      <ion-label>
+        <h2>{{ sentRequest.displayName }}</h2>
+        <p>{{ sentRequest.email }}</p>
+      </ion-label>
+      <ion-button (click)="cancelFriendRequest(sentRequest.id!)" color="warning">Cancel Request</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Friend Requests</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-item *ngFor="let request of friendRequests">
+      <ion-label>
+        <h2>{{ request.displayName }}</h2>
+        <p>{{ request.email }}</p>
+      </ion-label>
+      <ion-button (click)="acceptFriendRequest(request.id!)" color="success">Accept</ion-button>
+      <ion-button (click)="cancelFriendRequest(request.id!)" color="danger">Decline</ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-modal *ngIf="selectedUser" [isOpen]="isEditModalOpen" (didDismiss)="closeEditModal()">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Edit User</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item>
+        <ion-label position="stacked">First Name</ion-label>
+        <ion-input [(ngModel)]="selectedUser.firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Last Name</ion-label>
+        <ion-input [(ngModel)]="selectedUser.lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="selectedUser.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Display Name</ion-label>
+        <ion-input [(ngModel)]="selectedUser.displayName"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="saveUserDetails()">Save</ion-button>
+      <ion-button expand="full" color="light" (click)="closeEditModal()">Cancel</ion-button>
+    </ion-content>
+  </ion-modal>
+</ion-content>

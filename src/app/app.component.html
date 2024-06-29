@@ -2,31 +2,21 @@
   <ion-router-outlet></ion-router-outlet>
 
   <footer>
-    <nav>
-      <ion-tabs>
-        <ion-tab-bar slot="bottom">
-          <ion-tab-button [routerLink]="['/forms']">
-            <ion-icon name="person-circle"></ion-icon>
-            <ion-label>Users menu</ion-label>
-          </ion-tab-button>
-
-          <ion-tab-button [routerLink]="['/office']">
-            <ion-icon name="map"></ion-icon>
-            <ion-label>Office</ion-label>
-          </ion-tab-button>
-
-          <ion-tab-button [routerLink]="['/show']">
-            <ion-icon name="calendar"></ion-icon>
-            <ion-label>Events</ion-label>
-          </ion-tab-button>
-
-          <ion-tab-button [routerLink]="['/home']">
-            <ion-icon name="home"></ion-icon>
-            <ion-label>Home</ion-label>
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
-    </nav>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button [routerLink]="['/chat-rooms']">
+          <ion-icon name="chatbubbles"></ion-icon>
+          <ion-label>Rooms</ion-label>
+        </ion-tab-button>
+        <ion-tab-button [routerLink]="['/users']">
+          <ion-icon name="person"></ion-icon>
+          <ion-label>Online</ion-label>
+        </ion-tab-button> <!-- Ensure this tag is properly closed -->
+        <ion-tab-button (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
   </footer>
-
 </ion-app>

@@ -20,77 +20,21 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
   },
   {
-    path: 'add-post',
-    loadChildren: () => import('./add-post/add-post.module').then(m => m.AddPostPageModule)
+    path: 'chat-rooms',
+    loadChildren: () => import('./chat-rooms/chat-rooms.module').then(m => m.ChatRoomsPageModule)
   },
   {
-    path: 'edit-post/:id',
-    loadChildren: () => import('./edit-post/edit-post.module').then(m => m.EditPostPageModule)
-  },
-  {
-    path: 'buttons',
-    loadChildren: () => import('./buttons/buttons.module').then(m => m.ButtonsPageModule)
-  },
-  {
-    path: 'edit-request',
-    loadChildren: () => import('./edit-request/edit-request.module').then(m => m.EditRequestPageModule)
-  },
-  {
-    path: 'forms',
-    loadChildren: () => import('./forms/forms.module').then(m => m.FormsPageModule)
-  },
-  {
-    path: 'office',
-    loadChildren: () => import('./office/office.module').then(m => m.OfficePageModule)
-  },
-  {
-    path: 'show',
-    loadChildren: () => import('./show/show.module').then(m => m.ShowPageModule)
-  },
-  {
-    path: 'show-request',
-    loadChildren: () => import('./show-request/show-request.module').then(m => m.ShowRequestPageModule)
-  },
-  {
-    path: 'show-volunteer',
-    loadChildren: () => import('./show-volunteer/show-volunteer.module').then(m => m.ShowVolunteerPageModule)
-  },
-  {
-    path: 'video',
-    loadChildren: () => import('./video/video.module').then(m => m.VideoPageModule)
-  },
-  {
-    path: 'volunteer',
-    loadChildren: () => import('./volunteer/volunteer.module').then(m => m.VolunteerPageModule)
-  },
-  {
-    path: 'request',
-    loadChildren: () => import('./request/request.module').then(m => m.RequestPageModule)
-  },
-  {
-    path: 'add-roster',
-    loadChildren: () => import('./add-roster/add-roster.module').then(m => m.AddRosterPageModule)
-  },
-  {
-    path: 'ios',
-    loadChildren: () => import('./ios/ios.module').then(m => m.IosPageModule)
-  },
-  {
-    path: 'maps',
-    loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule)
-  },
-  {
-    path: 'chat',
+    path: 'chat/:room',
     loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
   },
   {
-    path: 'noticeboard',
-    loadChildren: () => import('./noticeboard/noticeboard.module').then( m => m.NoticeboardPageModule)
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
   },
-
-
-
-
+  {
+    path: 'forgot',
+    loadChildren: () => import('./forgot/forgot.module').then( m => m.ForgotPageModule)
+  },
 ];
 
 @NgModule({

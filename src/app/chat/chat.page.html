@@ -1,34 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Chat</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <div id="history">
+    <!-- Display chat messages -->
     <div *ngFor="let chat of chats" class="chat-message">
       <ion-card class="white-background">
-        <ion-card-subtitle>
-          <span>{{chat.username}} (Sent: {{chat.timestamp | date:'medium'}})</span>
-        </ion-card-subtitle>
+        <ion-card-header>
+          <ion-card-subtitle>
+            {{ chat.username }} (Sent: {{ chat.timestamp | date:'medium' }})
+          </ion-card-subtitle>
+        </ion-card-header>
         <ion-card-content>
-          <p>{{chat.message}}</p>
+          {{ chat.message }}
         </ion-card-content>
       </ion-card>
     </div>
   </div>
+  <!-- Typing indicator -->
+  <div *ngIf="typingUsers.length" class="typing-indicator">
+    <p>{{ typingUsers.join(', ') }} is typing...</p>
+  </div>
 </ion-content>
 
 <ion-footer>
-  <form id="message" [formGroup]="form" (ngSubmit)="onChatSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onChatSubmit()">
     <ion-item lines="none">
-      <ion-input formControlName="username" placeholder="Name"></ion-input>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-textarea formControlName="message" placeholder="Message"></ion-textarea>
+      <ion-textarea formControlName="message" placeholder="Type your message..." (ionInput)="onTyping()" (ionBlur)="onStopTyping()"></ion-textarea>
       <ion-buttons slot="end">
-        <ion-button type="submit" class="black-button">
-          <ion-icon name="send"></ion-icon> Send
+        <ion-button type="submit" color="primary">
+          <ion-icon slot="icon-only" name="send"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-item>

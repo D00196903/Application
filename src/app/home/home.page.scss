@@ -1,64 +1,26 @@
-ion-header {
-  background-color: #FFFFFF;
-  border-bottom: 2px solid #CCCCCC;
+.welcome-container {
+  text-align: center;
+  padding: 20px;
 }
 
-#image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%; /* ensure it spans the full width */
-  margin-top: -1px; /* Optional: Helps remove any gap between the header and image */
+.logo {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
 }
 
-ion-img {
-  max-width: 100%; /* Ensures the image is responsive and fits within the container */
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
-
-ion-img:hover {
-  transform: scale(1.05);
-}
-
-ion-title {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 32px;
-  font-weight: 600;
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
   color: #333333;
 }
 
-#container {
-  display: flex;
-}
-.centered-text {
-  text-align: center; /* Aligns text center inside the container */
-  width: 100%;
-  color: black; /* Ensures the container spans the full width */
+p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #333333;
 }
 
-h1, h2 {
-  margin: 0; /* Removes default margin to tidy up spacing */
-  padding: 10px 0; /* Adds some vertical padding but no horizontal padding */
-  color: black;
-}
-
-.content-block {
-  padding: 20px; /* Adds padding around the text for better spacing */
-  text-align: left; /* Aligns text to the left, remove if center alignment is preferred */
-  color: #333; /* Sets the text color for readability */
-  max-width: 800px; /* Optional: Restricts max width for better readability on larger screens */
-  margin: auto; /* Centers the block horizontally */
-}
-
-.content-block h2, .content-block h3 {
-  color: #005eb8; /* Example color for headings within the content block */
-}
-
-.content-block p {
-  line-height: 1.6; /* Improves readability by increasing line spacing */
-  margin-bottom: 10px; /* Adds spacing between paragraphs */
+ion-button {
+  margin: 10px 0;
 }

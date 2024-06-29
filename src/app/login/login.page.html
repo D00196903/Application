@@ -1,33 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="main-title">Login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <ion-grid>
-    <ion-row class="ion-align-items-center ion-justify-content-center">
-      <ion-col size="12" size-md="6">
-        <div class="login-logo">
-          <ion-img src="assets/images/header.jpg"></ion-img>
-        </div>
-
-        <ion-card color="light">
-          <ion-card-content>
-            <ion-item>
-              <ion-input type="email" [(ngModel)]="user.email" required placeholder="Email"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label position="floating">Password</ion-label>
-              <ion-input type="password" [(ngModel)]="user.password" required placeholder="Password"></ion-input>
-            </ion-item>
-
-            <ion-button class="ion-margin-top" color="success" expand="full" (click)="login(user)">Login</ion-button>
-            <ion-button class="ion-margin-top" color="success" expand="full" [routerLink]="['/register']">Register</ion-button>
-            <button (click)="loginWithGoogle()">Sign in with Google</button>
-          </ion-card-content>
-        </ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="user.email" type="email" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input [(ngModel)]="user.password" type="password" required></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="login(user)">Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" fill="clear" (click)="forgot(user.email)">Forgot Password?</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

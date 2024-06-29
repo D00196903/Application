@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from './services/UserService';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private userService: UserService, private router: Router) {}
+
+  logout() {
+    this.userService.logout().then(() => {
+      this.router.navigate(['/login']);
+    }).catch((error: unknown) => { // Explicitly declaring 'unknown' type for error
+      console.error('Logout failed', error);
+    });
+  }
 }

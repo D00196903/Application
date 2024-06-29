@@ -1,20 +1,14 @@
-
 ion-item-sliding {
-  border-bottom: 1px solid rgba(0,0,0,0.13);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 }
 
-.ios {
+.ios, .md {
   --ion-background-color: #bbe3e3;
-  --ion-background-image: #bbe3e3;
-}
-
-.md {
-  --ion-background-color: #bbe3e3;
-  --ion-background-image: #bbe3e3;
+  --ion-background-image: none;
 }
 
 ion-tab-button {
-  color: black;
+  --color: red;
 }
 
 ion-title {
@@ -25,3 +19,23 @@ ion-title {
   font-weight: bold;
 }
 
+.auth-container {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+footer {
+  background-color: #f8f8f8;
+  border-top: 1px solid #e0e0e0;
+}
+
+ion-tab-bar {
+  background-color: #ffffff;
+}
+
+ion-tab-button {
+  --color-selected: #333333;
+  --color: #888888;
+  font-size: 14px;
+}

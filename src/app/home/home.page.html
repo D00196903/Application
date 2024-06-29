@@ -1,33 +1,17 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title class="main-title"></ion-title>
+    <ion-title>
+      ChatEase
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div id="image-container">
-    <ion-img src="assets/images/header.jpg" [routerLink]="['/register']"></ion-img>
-  </div>
-
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large"></ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div class="centered-text">
-    <h1>IF YOU NEED HELP NOW CALL</h1>
-    <h2>1800-901-909</h2>
-  </div>
-
-  <!-- New Content Block -->
-  <div class="content-block">
-    <h2>Supporting You And Your Mental Health</h2>
-    <p>Since 2007, SOSAD has worked to raise awareness and help prevent suicide in Ireland. We have worked tirelessly in our communities to help those in need feel supported and know they are not alone on their journey. SOSAD offer support and services for people who are struggling with suicidal ideation, self-harming, depression, bereavement, stress and anxiety, or if you simply need to talk.</p>
-    <p>If you want to talk, we are here to listen. You can message us, call us, or call into our office.</p>
-    <p>We have seven offices based in Cavan, Louth, Meath, Monaghan, and Laois from which we provide our services.</p>
-    
-    <h3>Ask For Help!</h3>
-    <p>Everyone experiences periods in their life when they feel low for a short amount of time and this is a normal part of life. It is only when low periods last for an extended time or the way you are feeling interferes with the everyday life that you may be suffering from depression. Asking for help is the first step in your recovery. We know how hard this may seem but you will be surprised how much better you will feel after sharing. So try to talk to someone and get the help you need!</p>
+<ion-content class="ion-padding">
+  <div class="welcome-container">
+    <ion-img src="assets/images/logo.png"></ion-img>
+    <h1>Welcome to ChatEase</h1>
+    <p>Connect with your friends and family instantly. Sign up or log in to start chatting!</p>
+    <ion-button expand="full" routerLink="/register">Sign Up</ion-button>
+    <ion-button expand="full" fill="outline" routerLink="/login">Log In</ion-button>
   </div>
 </ion-content>

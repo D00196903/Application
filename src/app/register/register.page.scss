@@ -1,27 +1,39 @@
-.signup-logo {
+ion-header {
+  --background: #3880ff;
+  --color: #fff;
+}
+
+ion-toolbar {
+  --background: #3880ff;
+  --color: #fff;
+}
+
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  height: 100%;
+  flex-direction: column;
 }
 
-ion-img {
+form {
   width: 100%;
-  height: auto;
-}
-
-ion-card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  max-width: 400px;
 }
 
 ion-item {
-  --padding-start: 0;
-  --padding-end: 0;
-  --inner-padding-end: 0;
-  --inner-padding-start: 0;
+  margin-bottom: 20px;
 }
 
 ion-button {
-  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.forgot-password {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: var(--ion-color-primary);
+  text-decoration: none;
+  font-size: 0.9em;
 }

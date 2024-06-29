@@ -5,6 +5,10 @@ import { getDatabase, ref, onValue, push, set } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 import { environment } from 'src/environments/environment';
 import { Chat } from '../models/chat.model';
+import { AuthService } from '../services/auth.service';
+import { ToastController } from '@ionic/angular';
+import { SocketService } from '../services/socket.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -12,49 +16,118 @@ import { Chat } from '../models/chat.model';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-  title = 'chat';
-  email = 'user.email';
+  roomName: string;
   form!: FormGroup;
-  username = '';
-  message = '';
   chats: Chat[] = [];
+  currentUser: any;
+  typingUsers: string[] = [];
 
   db = getDatabase(initializeApp(environment.FIREBASE_CONFIG));
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private toastCtrl: ToastController,
+    private socketService: SocketService,
+    private route: ActivatedRoute
+  ) {
+    this.roomName = this.route.snapshot.paramMap.get('roomName') || 'Default Room';
+  }
 
   ngOnInit(): void {
-    const chatsRef = ref(this.db, 'chats');
+    this.authService.currentUser.subscribe(user => {
+      this.currentUser = user;
+      console.log('Current user set in ChatPage:', this.currentUser);
+  
+      if (this.currentUser) {
+        const username = this.currentUser.displayName || (this.currentUser.email ? this.currentUser.email.split('@')[0] : 'Anonymous');
+        this.socketService.joinRoom({ username, room: this.roomName });
+      }
+    });
+  
+    this.form = this.formBuilder.group({
+      message: [''],
+      username: ['']
+    });
+  
+    const chatsRef = ref(this.db, `chats/${this.roomName}`);
     onValue(chatsRef, async (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        const chats: Chat[] = Object.values(data);
-        for (const chat of chats) {
-          chat.message = await this.decryptMessage(chat.message);
-        }
-        this.chats = [...chats];
+        const chats: Chat[] = Object.values(data) as Chat[]; // Assert that data is of type Chat[]
+        const decryptedChats = await Promise.all(chats.map(async (chat) => ({
+          ...chat,
+          message: await this.decryptMessage(chat.message)
+        })));
+        this.chats = decryptedChats;
       }
     });
-    this.form = this.formBuilder.group({
-      message: [],
-      username: [],
+  
+    this.socketService.listen('message').subscribe(data => {
+      if (data.room === this.roomName) {
+        this.chats.push(data);
+      }
+    });
+  
+    this.socketService.listen('typing').subscribe(data => {
+      this.updateTypingUsers(data.username, data.typing);
     });
   }
+  
 
   async onChatSubmit() {
-    const encryptedMessage = await this.encryptMessage(this.form.value.message);
-    const chat: Chat = {
-      ...this.form.value,
-      message: encryptedMessage,
-      timestamp: new Date().toString(),
-      id: uuidv4(),
-    };
-    const chatRef = push(ref(this.db, 'chats'));
-    set(chatRef, chat);
-    this.form = this.formBuilder.group({
-      message: [],
-      username: [chat.username],
+    if (!this.currentUser) {
+      await this.showToast('User not logged in');
+      return;
+    }
+
+    const message = this.form.value.message;
+    if (message.trim()) {
+      const encryptedMessage = await this.encryptMessage(message);
+      const chat: Chat = {
+        firstName: this.currentUser.displayName || 'Anonymous',
+        username: this.currentUser.email.split('@')[0],
+        message: encryptedMessage,
+        timestamp: new Date().toISOString(),
+        id: uuidv4(),
+        roomName: this.roomName
+      };
+
+      const chatRef = push(ref(this.db, `chats/${this.roomName}`));
+      await set(chatRef, chat);
+      this.form.reset();
+
+      this.socketService.emit('message', { text: message, room: this.roomName });
+    }
+  }
+
+  async showToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      duration: 3000
     });
+    toast.present();
+  }
+  updateTypingUsers(username: string, typing: boolean) {
+    if (typing) {
+      if (!this.typingUsers.includes(username)) {
+        this.typingUsers.push(username);
+      }
+    } else {
+      this.typingUsers = this.typingUsers.filter(user => user !== username);
+    }
+  }
+
+  onTyping() {
+    if (this.currentUser) {
+      this.socketService.emit('typing', { room: this.roomName, username: this.currentUser.username, typing: true });
+    }
+  }
+
+  onStopTyping() {
+    if (this.currentUser) {
+      this.socketService.emit('typing', { room: this.roomName, username: this.currentUser.username, typing: false });
+    }
   }
 
   async encryptMessage(message: string): Promise<string> {
@@ -116,4 +189,4 @@ export class ChatPage implements OnInit {
     return decryptedMessage;
   }
 }  
-   
+

@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -19,11 +18,17 @@
     "target": "es2022",
     "module": "es2020",
     "lib": [
-      "es2018", 
+      "es2018",
       "dom"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"],  // Add this line
+    "esModuleInterop": true,  // Add this line
+    "skipLibCheck": true  // Add this line
   },
+  "include": ["src"],  // Add this line
+  "exclude": ["node_modules"],  // Add this line
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

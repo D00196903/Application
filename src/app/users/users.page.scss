@@ -1,0 +1,41 @@
+ion-header {
+  background-color: #3880ff;
+  color: white;
+}
+
+ion-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+ion-content {
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
+ion-item {
+  margin-bottom: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: white;
+}
+
+ion-label h2 {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+}
+
+ion-label p {
+  font-size: 0.9em;
+  color: #666;
+}
+
+ion-button {
+  margin-left: 10px;
+}
+
+ion-badge {
+  margin-left: 5px;
+}

@@ -1,6 +1,6 @@
 /* General Styles */
 ion-header {
-  background-color: #f8f9fa;  /* Light grey background for the header */
+  background-color: #007bff;  /* Primary blue background for the header */
   border-bottom: 1px solid #dee2e6; /* Subtle border for separation */
 }
 
@@ -12,22 +12,45 @@ ion-title {
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  color: #007bff; /* Blue color for emphasis */
+  color: white; /* White color for emphasis */
+}
+
+/* Sidebar Styles */
+ion-menu {
+  --width: 250px;
+}
+
+ion-list-header {
+  background-color: #f8f9fa; /* Light grey background for list header */
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+ion-item {
+  --background: #fff; /* White background for items */
+  border-bottom: 1px solid #dee2e6; /* Border for item separation */
+}
+
+ion-item ion-label {
+  font-size: 14px;
+  color: #343a40; /* Dark grey for text */
 }
 
 /* Chat History */
 #history {
   padding: 16px;
   overflow-y: auto; /* Allows scrolling */
+  background-color: #f7f7f7; /* Light background for chat history */
 }
 
 .chat-message {
   margin-bottom: 12px;
 }
 
-ion-card {
+.chat-card {
   --background: #ffffff; /* White background for chat cards */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Adds subtle shadow for depth */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
 }
 
 ion-card-subtitle {
@@ -60,22 +83,17 @@ ion-input, ion-textarea {
   color: #495057; /* Dark grey for input text */
 }
 
-ion-button {
+.send-button {
   --background: #007bff; /* Blue background for send button */
-  --color: black; /* White text for button */
+  --color: white; /* White text for button */
 }
 
-ion-icon {
+.send-button ion-icon {
   margin-right: 8px;
-  --color: black;  /* Space between icon and text */
+  --color: white;  /* Ensures the icon is also white */
 }
-
-.black-button {
-  --background: black; /* Sets the background of the button to black */
-  --color: white; /* Sets the text color to white */
-  --ripple-color: #ccc; /* Optional: changes the ripple effect color on click */
-}
-
-.black-button ion-icon {
-  color: white; /* Ensures the icon is also white */
+.typing-indicator {
+  font-style: italic; /* Italicize typing indicator */
+  color: #666; /* Lighter text color for less prominence */
+  padding-left: 16px; /* Align text slightly indented */
 }
